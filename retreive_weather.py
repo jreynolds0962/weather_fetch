@@ -3,7 +3,7 @@ import cped
 
 
 class get_weather():
-    def __init__(self, key, url, city, days=7, units="imperial", lat="33.44", lon="-94.04"):
+    def __init__(self, key, url, city="null", days=7, units="imperial", lat="33.44", lon="-94.04"):
         self.key = key
         self.url = url
         self.city = city
@@ -11,6 +11,7 @@ class get_weather():
         self.units = units
         self.lat = lat
         self.lon = lon
+        self.exclusion = "current,minutely,hourly,alerts"
 
     def get_lat_and_lon(self):
         print("Now lets get the coordinates")
@@ -22,7 +23,7 @@ class get_weather():
 
 
     def retreive_forecast(self):
-        request_url = f"{self.url}?appid={cped.api_key}&lat={self.lat}&lon={self.lon}&exclude={exclusion}&units={self.units}"
+        request_url = f"{self.url}?appid={self.key}&lat={self.lat}&lon={self.lon}&exclude={self.exclusion}&units={self.units}"
 
         response = requests.get(request_url)
 
